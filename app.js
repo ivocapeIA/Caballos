@@ -43,42 +43,36 @@
     viewport.innerHTML = "";
     thumbs.innerHTML = "";
 
+    const current = list[index];
+    const slide = document.createElement("div");
+    slide.className = "slide is-active" + (current.type === "photo" ? " is-photo" : " is-video");
+    if (current.crop === "hug") slide.classList.add("crop-hug");
+
+    if (current.type === "video") {
+      const video = document.createElement("video");
+      video.src = current.src;
+      video.controls = true;
+      video.playsInline = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      video.preload = "auto";
+      if (current.poster) video.poster = current.poster;
+      video.addEventListener("error", () => dropMissing(current.src));
+      slide.appendChild(video);
+      const badge = document.createElement("span");
+      badge.className = "badge";
+      badge.textContent = "video";
+      slide.appendChild(badge);
+    } else {
+      const img = document.createElement("img");
+      img.src = current.src;
+      img.alt = current.caption;
+      img.addEventListener("error", () => dropMissing(current.src));
+      slide.appendChild(img);
+    }
+    viewport.appendChild(slide);
+
     list.forEach((item, i) => {
-      const slide = document.createElement("div");
-      slide.className = "slide" + (item.type === "photo" ? " is-photo" : " is-video");
-      if (item.crop === "hug") slide.classList.add("crop-hug");
-      if (i === index) slide.classList.add("is-active");
-
-      if (item.type === "video") {
-        if (i === index) {
-          const video = document.createElement("video");
-          video.src = item.src;
-          video.controls = true;
-          video.playsInline = true;
-          video.setAttribute("playsinline", "");
-          video.preload = "metadata";
-          if (item.poster) video.poster = item.poster;
-          video.addEventListener("error", () => dropMissing(item.src));
-          slide.appendChild(video);
-        } else if (item.poster) {
-          const img = document.createElement("img");
-          img.src = item.poster;
-          img.alt = item.caption;
-          slide.appendChild(img);
-        }
-        const badge = document.createElement("span");
-        badge.className = "badge";
-        badge.textContent = "video";
-        slide.appendChild(badge);
-      } else {
-        const img = document.createElement("img");
-        img.src = item.src;
-        img.alt = item.caption;
-        img.addEventListener("error", () => dropMissing(item.src));
-        slide.appendChild(img);
-      }
-      viewport.appendChild(slide);
-
       const thumb = document.createElement("button");
       thumb.type = "button";
       if (i === index) thumb.classList.add("is-on");
@@ -90,16 +84,7 @@
       thumbs.appendChild(thumb);
     });
 
-    caption.textContent = list[index].caption;
-    pauseOthers();
-  }
-
-  function pauseOthers() {
-    viewport.querySelectorAll("video").forEach((v, i) => {
-      if (i !== index) {
-        v.pause();
-      }
-    });
+    caption.textContent = current.caption;
   }
 
   function go(i) {
@@ -126,11 +111,16 @@
     if (e.key === "ArrowRight") go(index + 1);
   });
 
-  let startX = 0;
+  let startX = null;
   viewport.addEventListener("touchstart", (e) => {
+    if (e.target.closest("video")) {
+      startX = null;
+      return;
+    }
     startX = e.changedTouches[0].clientX;
   }, { passive: true });
   viewport.addEventListener("touchend", (e) => {
+    if (startX == null) return;
     const dx = e.changedTouches[0].clientX - startX;
     if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
   });
