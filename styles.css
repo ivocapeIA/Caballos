@@ -51,7 +51,7 @@ a {
   inset: 0;
   z-index: 30;
   display: flex;
-  pointer-events: none;
+  cursor: pointer;
 }
 
 .door {
@@ -75,6 +75,30 @@ a {
 
 .doors.is-open .door-right {
   transform: translateX(102%);
+}
+
+.doors.is-open {
+  pointer-events: none;
+}
+
+.door-hit {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  z-index: 2;
+  transform: translateX(-50%);
+  border: 1px solid var(--brass);
+  background: rgba(20, 12, 8, 0.72);
+  color: var(--brass);
+  font: inherit;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  padding: 12px 22px;
+  cursor: pointer;
+}
+
+.doors.is-open .door-hit {
+  opacity: 0;
 }
 
 .door-planks {
@@ -402,13 +426,32 @@ h2 {
   position: absolute;
   inset: 0;
   opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.55s ease;
+}
+
+.slide.is-photo {
   transform: scale(1.04);
   transition: opacity 0.55s ease, transform 1.2s ease;
 }
 
 .slide.is-active {
   opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.slide.is-photo.is-active {
   transform: scale(1);
+}
+
+.slide video {
+  position: relative;
+  z-index: 1;
+  background: #0a0806;
 }
 
 .slide img,

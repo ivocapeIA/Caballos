@@ -7,9 +7,11 @@
   const next = document.getElementById("next");
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  requestAnimationFrame(() => {
-    if (!reduce) doors.classList.add("is-open");
-  });
+  if (reduce) {
+    doors.classList.add("is-open");
+  } else {
+    doors.addEventListener("click", () => doors.classList.add("is-open"));
+  }
 
   let items = MEDIA.slice();
   let index = 0;
@@ -43,18 +45,27 @@
 
     list.forEach((item, i) => {
       const slide = document.createElement("div");
-      slide.className = "slide" + (item.crop === "hug" ? " crop-hug" : "");
+      slide.className = "slide" + (item.type === "photo" ? " is-photo" : " is-video");
+      if (item.crop === "hug") slide.classList.add("crop-hug");
       if (i === index) slide.classList.add("is-active");
 
       if (item.type === "video") {
-        const video = document.createElement("video");
-        video.src = item.src;
-        video.controls = true;
-        video.playsInline = true;
-        video.preload = i === index ? "metadata" : "none";
-        if (item.poster) video.poster = item.poster;
-        video.addEventListener("error", () => dropMissing(item.src));
-        slide.appendChild(video);
+        if (i === index) {
+          const video = document.createElement("video");
+          video.src = item.src;
+          video.controls = true;
+          video.playsInline = true;
+          video.setAttribute("playsinline", "");
+          video.preload = "metadata";
+          if (item.poster) video.poster = item.poster;
+          video.addEventListener("error", () => dropMissing(item.src));
+          slide.appendChild(video);
+        } else if (item.poster) {
+          const img = document.createElement("img");
+          img.src = item.poster;
+          img.alt = item.caption;
+          slide.appendChild(img);
+        }
         const badge = document.createElement("span");
         badge.className = "badge";
         badge.textContent = "video";
