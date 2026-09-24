@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lola y Comanche</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gloock&family=Sora:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="doors" id="doors" aria-hidden="true">
+      <div class="door door-left">
+        <div class="door-planks"></div>
+        <div class="door-iron"></div>
+      </div>
+      <div class="door door-right">
+        <div class="door-planks"></div>
+        <div class="door-iron"></div>
+        <div class="stall-plate">
+          <span>la yegua</span>
+          <strong>Comanche</strong>
+        </div>
+      </div>
+    </div>
+
+    <canvas id="dust" class="dust" aria-hidden="true"></canvas>
+
+    <header class="hero">
+      <div class="hero-sky"></div>
+      <div class="hero-photo">
+        <img
+          src="media/fotos/020F2788-3B27-4253-8C87-D2D1AD11EE2E.JPG"
+          alt="Lola y Comanche, sacando la lengua"
+        />
+      </div>
+      <div class="hero-veil"></div>
+      <nav class="topbar">
+        <a href="#album">El álbum</a>
+        <a href="#pista">La pista</a>
+        <a href="#yegua">Comanche</a>
+      </nav>
+      <div class="hero-copy">
+        <p class="hero-kicker">Lola Álvarez · la yegua Comanche</p>
+        <h1>Las que se entendían<br />sin hablar.</h1>
+        <p class="hero-lead">
+          Un rincón para las fotos, los saltos y los videos de las dos.
+          Para acordarse de Comanche como era: atenta, pinta al viento,
+          llevando a Lola por encima de la vara.
+        </p>
+        <a class="enter" href="#album">Entrar al álbum</a>
+      </div>
+      <svg class="horse-walk" viewBox="0 0 200 80" aria-hidden="true">
+        <g class="horse-pair">
+          <path
+            d="M18 52c2-8 8-14 16-16l8-10 10 2 4 8h14l10-8 8 2-2 10 12 4c6 2 8 10 4 14l-8 4H28l-10-10z"
+          />
+        </g>
+      </svg>
+      <div class="grass" aria-hidden="true"></div>
+    </header>
+
+    <section class="plaque-row">
+      <div class="pole" aria-hidden="true"></div>
+      <figure class="hug">
+        <img
+          class="hug-photo"
+          src="media/fotos/DRY_1331.JPG"
+          alt="Lola abrazada al cuello de Comanche en la arena"
+        />
+        <figcaption>
+          La mano en el cuello. El casco contra la crin.
+          Ahí termina cada recorrido.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="album" id="album">
+      <div class="section-head">
+        <h2>El álbum del box</h2>
+        <p>Fotos y videos. Deslizá, o usá las flechas.</p>
+      </div>
+
+      <div class="filters" role="tablist">
+        <button class="filter is-on" data-filter="all">Todo</button>
+        <button class="filter" data-filter="photo">Fotos</button>
+        <button class="filter" data-filter="video">Videos</button>
+        <button class="filter" data-filter="prueba">Pruebas CHAS</button>
+      </div>
+
+      <div class="stage">
+        <button class="nav prev" id="prev" aria-label="Anterior">‹</button>
+        <div class="viewport" id="viewport"></div>
+        <button class="nav next" id="next" aria-label="Siguiente">›</button>
+      </div>
+      <p class="caption" id="caption"></p>
+      <div class="thumbs" id="thumbs"></div>
+    </section>
+
+    <section class="pista" id="pista">
+      <div class="section-head">
+        <h2>La temporada</h2>
+        <p>Club Hípico Argentino. Lola Álvarez Alonso y LV Chas Comanche.</p>
+      </div>
+      <ol class="meets">
+        <li>
+          <time>2022</time>
+          <div>
+            <strong>Campeonato Nacionales</strong>
+            <p>La escarapela en la oreja. El arco del club atrás.</p>
+          </div>
+        </li>
+        <li>
+          <time>25 jun 2023</time>
+          <div>
+            <strong>CHAS · SV 1,10</strong>
+            <p>Primera prueba filmada de esa temporada de invierno.</p>
+          </div>
+        </li>
+        <li>
+          <time>20 jul 2023</time>
+          <div>
+            <strong>CHAS · SV 1,00 y 1,10</strong>
+            <p>Dos alturas, el mismo par.</p>
+          </div>
+        </li>
+        <li>
+          <time>26 ago 2023</time>
+          <div>
+            <strong>CHAS · SV 1,00 con premiación · SV 1,10</strong>
+            <p>El día que la pista les devolvió la cinta.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="wall">
+      <div class="wall-grid">
+        <img src="media/fotos/IMG_0907.jpg" alt="Lola y Comanche bajo el arco del Club Hípico Argentino" />
+        <img src="media/fotos/IMG_3435.jpg" alt="Comanche de perfil con escarapela" />
+        <img src="media/fotos/IMG_6297.jpg" alt="Lola montada, Comanche con escarapela de 2022" />
+        <img src="media/fotos/IMG_6367.jpg" alt="Comanche de cuerpo entero" />
+        <img src="media/fotos/dc4d9ed7-84e3-4ce6-abb2-29830d2104cd.jpg" alt="Salto con sonrisa" />
+        <img src="media/fotos/IMG_6790.PNG" alt="Salto en concurso" />
+      </div>
+    </section>
+
+    <footer class="yegua" id="yegua">
+      <p class="yegua-name">Comanche</p>
+      <p class="yegua-line">
+        Overo alazán. Orejas adelante. La que le prestaba el cuerpo a Lola
+        para volar un segundo y volver a la arena.
+      </p>
+      <p class="yegua-keep">Siempre en la pista.</p>
+    </footer>
+
+    <script src="media.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
