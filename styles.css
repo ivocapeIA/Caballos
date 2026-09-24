@@ -81,23 +81,22 @@ a {
   pointer-events: none;
 }
 
-.door-hit {
+.stall-plate {
   position: absolute;
   left: 50%;
-  bottom: 12%;
+  top: 50%;
   z-index: 2;
-  transform: translateX(-50%);
-  border: 1px solid var(--brass);
-  background: rgba(20, 12, 8, 0.72);
-  color: var(--brass);
-  font: inherit;
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-  padding: 12px 22px;
-  cursor: pointer;
+  transform: translate(-50%, -50%);
+  width: min(280px, 78vw);
+  padding: 22px 18px 16px;
+  background: linear-gradient(#3d2a18, #2a1b10);
+  border: 3px solid var(--brass);
+  box-shadow: 0 10px 0 #140c08;
+  text-align: center;
+  transition: opacity 0.35s ease;
 }
 
-.doors.is-open .door-hit {
+.doors.is-open .stall-plate {
   opacity: 0;
 }
 
@@ -132,17 +131,14 @@ a {
   left: 0;
 }
 
-.stall-plate {
-  position: absolute;
-  left: 50%;
-  top: 42%;
-  transform: translate(-50%, -50%);
-  width: min(240px, 70%);
-  padding: 18px 16px 14px;
-  background: linear-gradient(#3d2a18, #2a1b10);
-  border: 3px solid var(--brass);
-  box-shadow: 0 10px 0 #140c08;
-  text-align: center;
+.stall-plate em {
+  display: block;
+  margin-top: 12px;
+  font-style: normal;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: lowercase;
+  color: var(--sand);
 }
 
 .stall-plate span {
