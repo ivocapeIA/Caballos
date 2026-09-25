@@ -161,7 +161,7 @@ a {
   position: relative;
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.35fr 0.75fr;
   align-items: stretch;
   overflow: hidden;
 }
@@ -196,27 +196,6 @@ a {
     linear-gradient(90deg, transparent 36%, rgba(11, 16, 14, 0.2) 52%, var(--night) 68%),
     linear-gradient(180deg, transparent 70%, var(--night));
   pointer-events: none;
-}
-
-.topbar {
-  position: absolute;
-  top: 28px;
-  right: 36px;
-  z-index: 5;
-  display: flex;
-  gap: 22px;
-  font-size: 0.82rem;
-}
-
-.topbar a {
-  text-decoration: none;
-  color: var(--sand);
-  border-bottom: 1px solid transparent;
-}
-
-.topbar a:hover,
-.topbar a:focus-visible {
-  border-bottom-color: var(--brass);
 }
 
 .hero-copy {
@@ -604,7 +583,7 @@ h2 {
   }
 
   .hero-photo img {
-    height: 54vh;
+    height: 68vh;
     object-position: center 18%;
   }
 
@@ -630,18 +609,6 @@ h2 {
 
   .grass {
     height: 48px;
-  }
-
-  .topbar {
-    left: 16px;
-    right: 16px;
-    top: max(14px, env(safe-area-inset-top));
-    gap: 14px;
-    justify-content: flex-end;
-  }
-
-  .topbar a {
-    padding: 6px 0;
   }
 
   .stall-plate {
