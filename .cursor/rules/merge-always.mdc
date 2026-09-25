@@ -1,0 +1,8 @@
+---
+description: Siempre fusionar los cambios de este repositorio
+alwaysApply: true
+---
+
+En este repositorio, al terminar un cambio: commit, push, pull request y merge a `main` en el mismo turno. No dejes el PR en borrador ni esperes a que pidan el merge.
+
+Después del merge, esperá a que termine el deploy de GitHub Pages antes de decir que la página ya está publicada.
